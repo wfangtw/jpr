@@ -3,7 +3,7 @@
 export TOKENIZERS_PARALLELISM=false
 DISTRIBUTED_ARGS="-m torch.distributed.launch --nproc_per_node 4 --nnodes ${SLURM_NNODES} --node_rank ${SLURM_PROCID} --master_addr localhost --master_port 55555"
 
-python ${DISTRIBUTED_ARGS} joint_train.py \
+python ${DISTRIBUTED_ARGS} jpr.py \
     --per_device_train_batch_size 1 \
     --per_device_eval_batch_size 1 \
     --metric_for_best_model reranked-avg \

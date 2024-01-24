@@ -60,7 +60,7 @@ For training, run:
 ```
 DISTRIBUTED_ARGS="-m torch.distributed.launch --nproc_per_node ${NPROC_PER_NODE} --nnodes ${SLURM_NNODES} --node_rank ${SLURM_PROCID} --master_addr ${PARENT} --master_port ${MPORT}"
 
-python ${DISTRIBUTED_ARGS} joint_train.py \
+python ${DISTRIBUTED_ARGS} jpr.py \
     --per_device_train_batch_size 1 \
     --per_device_eval_batch_size 1 \
     --warmup_ratio 0.1 \
@@ -101,7 +101,7 @@ Remove the flag `--bf16` if not training on Ampere or newer machines.
 # Inference (Re-ranking)
 For OpenQA retrieval, run:
 ```
-python ${DISTRIBUTED_ARGS} joint_train.py \
+python ${DISTRIBUTED_ARGS} jpr.py \
     --per_device_eval_batch_size 1 \
     --metric_for_best_model reranked-avg \
     --label_names retr_bm25_labels \
